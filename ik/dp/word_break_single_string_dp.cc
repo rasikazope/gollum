@@ -38,7 +38,6 @@ vector <string > wordBreak(string strWord, vector < string > strDict) {
 
     map<int, vector<string> > cache;
     int start;
-    string cur_str;
 
     vector <string> res;
     
@@ -50,8 +49,6 @@ vector <string > wordBreak(string strWord, vector < string > strDict) {
 
             if (find_in_str_dict(my_substr, strDict)) {
                 vector <string> v_string;
-                cur_str += my_substr;
-                cur_str += " ";
                 auto itr_cache_i_plus_one = cache.find(i+1);
                 if (itr_cache_i_plus_one != cache.end()) {
                     auto itr_cache_start = cache.find(start);
@@ -70,9 +67,7 @@ vector <string > wordBreak(string strWord, vector < string > strDict) {
                         v_string.push_back(s_tmp);
                     }
                     cache[start] = v_string;
-                } else {
-                    cur_str.erase (cur_str.end() - my_substr.length() - 1, cur_str.end());  
-                }
+                } 
             }
         }
     }
