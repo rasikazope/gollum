@@ -26,8 +26,51 @@ using namespace std;
  *  * Complete the function below.
  *   */
 void makeChange(int C, vector < int > intDenominations) {
+   
+    vector <unsigned int> cache(C+1);
+    vector <unsigned int> coins_used(C+1);
+    cache[0] = 0;
+    for (int i = 1; i < cache.size(); i++) {
+        cache[i] = INT_MAX;
+        //cache[i] = 6000;
+    }
 
+    for (int i = 0; i < intDenominations.size(); i++) {
 
+        for (int j = 1; j < cache.size(); j++) {
+            if (j - intDenominations[i] >= 0) {
+                if (1 + cache[ j - intDenominations[i] ] < cache[j]) {
+                    coins_used[j] = i;
+                }
+                cache[j] = min(cache[j], 1 + cache[ j - intDenominations[i] ]);
+                //cout << endl << j << " " << cache[j];
+            } 
+        }
+    }
+
+    cout << endl << "Minimum coins needed for change "<< cache[C] << endl;
+    int coin_index = 0;
+    while (C > 0) {
+        if (coin_index) 
+            cout << ",";
+        coin_index = coins_used[C];
+        cout << intDenominations[coin_index];
+        C = C - intDenominations[coin_index];
+    }
+#if 0
+    cout << endl;
+    for (int i: coins_used)
+    {
+        cout << i << " ";
+    }
+    cout << endl;
+    cout << endl;
+    for (int i: cache)
+    {
+        cout << i << " ";
+    }
+    cout << endl;
+#endif
 }
 
 
@@ -54,6 +97,8 @@ int main() {
 }
 
 #if 0
+
+// Please note: this works for repeated coins too
 i/p
 4
 3
