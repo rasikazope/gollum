@@ -48,7 +48,8 @@ longest_palindromic_string(string orig_string)
 
 int main() 
 {
-    string mystring_even("qstnittinkk");
+    //string mystring_even("qstnittinkk");
+    string mystring_even("abcdefg");
     cout << longest_palindromic_string(mystring_even) << endl;
     string mystring_odd("qstnitinkk");
     cout << longest_palindromic_string(mystring_odd) << endl;
