@@ -26,34 +26,20 @@ using namespace std;
 /*
  *  * Complete the function below.
  *   */
-int maxStolenValue(vector < int > arrHouseValues, int end) {
-
-    int ret1 = INT_MIN;
-    int ret2 = INT_MIN;
-    vector <int> cache(arrHouseValues.size(), 0);
-
-    for (int end = 0; end < arrHouseValues.size(); end++) {
-        ret1 = INT_MIN;
-        ret2 = INT_MIN;
-        ret1 = arrHouseValues[end];
-        if (end-2 >= 0) {
-            ret1 += cache[end-2];
-        }
-        if (end-1 >= 0) {
-            ret2 = cache[end-1];
-        }
-        cache[end] = max(ret1, ret2);
-    }
-    cout << endl;
-    for (int end = 0; end < cache.size(); end++) {
-        cout << cache[end] << " ";
-    }
-    cout << endl;
-    return cache[arrHouseValues.size() - 1];
-}
 
 int maxStolenValue(vector < int > arrHouseValues) {
-    return maxStolenValue(arrHouseValues, arrHouseValues.size() - 1);
+    vector <int> cache(arrHouseValues.size(), 0);
+
+    cache[0] = arrHouseValues[0];
+    if (arrHouseValues.size() > 1) {
+        cache[1] = max(arrHouseValues[0], arrHouseValues[1]);
+        for (int i = 2; i < arrHouseValues.size(); i++) {
+            cache[i] = max(arrHouseValues[i]+ cache[i-2], cache[i-1]);
+        }
+    }
+    return cache[arrHouseValues.size() - 1];
+
+    
 }
 
 int main() {
@@ -78,4 +64,15 @@ int main() {
     return 0;
 }
 
-
+//http://codercareer.blogspot.com/2013/02/no-44-maximal-stolen-values.html
+#if 0
+input:
+5
+1
+2
+3
+4
+5
+output:
+9
+#endif
