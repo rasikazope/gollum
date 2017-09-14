@@ -27,58 +27,44 @@ using namespace std;
  *  * Complete the function below.
  *   */
 
-
-
-int countIslands(vector < vector < int > > imatrix, vector < vector < int > > &visit, int i, int j) {
-
-    if (i < 0 || i >= visit.size() || j < 0 || j >= visit.size()) {
-        return 0;
-    }
-    if (visit[i][j] == 1) {
-        return 0;
+void
+ci_util(vector <vector <int> > imatrix, vector < vector <int> > &visited, int i, int j)
+{
+    if (i < 0 || i >= imatrix.size() || j < 0 || j >= imatrix[0].size()) {
+        return;
     }
 
-    visit[i][j] = 1;
-
+    if (visited[i][j] == 1) {
+        return;
+    }
+    
+    visited[i][j] = 1;
+    
     if (imatrix[i][j] == 0) {
-        return 0;
+        return;
     }
 
-    // For all neighbors of i, j call countIslands
-    countIslands(imatrix, visit, i-1, j);
-    countIslands(imatrix, visit, i+1, j);
-    countIslands(imatrix, visit, i, j-1);
-    countIslands(imatrix, visit, i, j+1);
 
+    ci_util(imatrix, visited, i-1, j);
+    ci_util(imatrix, visited, i, j-1);
+    ci_util(imatrix, visited, i+1, j);
+    ci_util(imatrix, visited, i, j+1);
 }
 
 
 
 int countIslands_main(vector < vector < int > > imatrix) {
-    vector < vector < int > > visit;
-    visit = imatrix;
-    for (int i = 0; i < imatrix.size(); i++) {
-        for (int j = 0; j < imatrix.size(); j++) {
-            visit[i][j] = 0;
-        }
-    }
+    vector < vector <int> > visited(imatrix.size(), vector<int> (imatrix[0].size() , 0));
+
     int count = 0;
+    
     for (int i = 0; i < imatrix.size(); i++) {
-        for (int j = 0; j < imatrix.size(); j++) {
-            if (visit[i][j] == 0 && imatrix[i][j] == 1) {
-                cout << "Rasika" << endl;
-                
-                countIslands(imatrix, visit, i, j);
-               
-                for (int k = 0; k < imatrix.size(); k++) {
-                    for (int l = 0; l < imatrix.size(); l++) {
-                        cout << visit[k][l] << " ";
-                    }
-                    cout << endl;
-                }
-                count ++;
+        for (int j = 0; j < imatrix[0].size(); j++) {
+            if (imatrix[i][j] == 1 && visited[i][j] == 0) {
+                ci_util(imatrix, visited, i, j);
+                count++;
             }
-        }
+        } 
     }
     return count;
 }
@@ -105,3 +91,28 @@ int main() {
     fout.close();
     return 0;
 }
+
+/*
+ * input
+ 4
+ 4
+ 0
+ 1
+ 0
+ 0
+ 1
+ 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 0
+ 0
+ 1
+ 0
+ outout is 2
+ */
+
+
