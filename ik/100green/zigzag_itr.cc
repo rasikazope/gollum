@@ -28,7 +28,7 @@ zigzag(vector<int>& v1, vector<int>& v2)
         }
         if (s[p] != e[p]) {
             cout << *s[p] << " ";
-            *s[p]++;
+            s[p]++;
         } 
         p = (p + 1) % 2;
    }
