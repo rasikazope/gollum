@@ -74,7 +74,6 @@ int main() {
     int _str_size = 0;
     cin >> _str_size;
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n'); 
-    vector<string> _str;
     string _str_item;
     getline(cin, _str_item);
 

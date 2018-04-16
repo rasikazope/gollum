@@ -23,7 +23,7 @@ inter_comp(interval i1, interval i2)
 
 void merge_intervals(struct interval intervals[], int size)
 {
-
+    // Very interesting the pointer addition here
     sort(intervals, intervals + size, inter_comp);
     stack<struct interval> mystack;
     

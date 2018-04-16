@@ -36,6 +36,10 @@ public:
     }
 };
 
+/*how do you count the number of visitors for the past 1 minute
+ * */
+
+
 int main() {
 
     Hitcount hc;
