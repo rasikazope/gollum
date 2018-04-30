@@ -26,11 +26,11 @@ min_meeting_rooms(vector <meeting> meetings)
     if (meetings.empty()) { return 0; }
     int no_of_rooms = 0;
     sort(meetings.begin(), meetings.end(), m_sort);
-    priority_queue <int> min_pq;
+    priority_queue <int, vector<int>, greater<int> > min_pq;
 
     for (auto itr : meetings) {
       if (min_pq.empty()) {
-          min_pq.push(itr.start);
+          min_pq.push(itr.end);
       } else {
           if (itr.start > min_pq.top()) {
             min_pq.pop();
@@ -47,7 +47,8 @@ int main() {
 
 
     //vector <meeting> meetings = { {30,100}, {20,75}, {0, 150}, {0, 200} }; // Answer 4
-    vector <meeting> meetings = { {0,10}, {20,75}, {80, 150}, {200, 400} }; // Answer 4
+    vector <meeting> meetings = { {0,10}, {5,20}, {25, 30}, {0, 200} }; // Answer 4
+    // vector <meeting> meetings = { {0,10}, {20,75}, {80, 150}, {200, 401} }; // Answer 1
     cout << min_meeting_rooms(meetings) << endl;
     return 0;
 }
