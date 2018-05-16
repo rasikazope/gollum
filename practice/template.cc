@@ -5,6 +5,7 @@
 #include <vector>
 #include <stack>
 #include <unordered_map>
+#include <sstream>
 
 using namespace std;
 
