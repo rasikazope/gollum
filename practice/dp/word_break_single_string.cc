@@ -99,26 +99,24 @@ int main() {
 
 #if 0 
 i/p
-interviewkickstart
-12
+ilikeicecreammango
+10
 a
 e
 i
-int
-inter
-interview
-kick
-kicker
-kickstart
-star
-start
-view
+like
+ice
+cream
+icecream
+man
+go
+mango
 
 o/p
-inter view kick start
-interview kickstart
-inter view kickstart
-interview kick start
+i like ice cream man go
+i like ice cream mango
+i like icecream man go
+i like icecream mango
 
 
 #endif

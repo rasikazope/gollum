@@ -32,7 +32,6 @@ void makeChange(int C, vector < int > intDenominations) {
     cache[0] = 0;
     for (int i = 1; i < cache.size(); i++) {
         cache[i] = INT_MAX;
-        //cache[i] = 6000;
     }
 
     for (int i = 0; i < intDenominations.size(); i++) {
